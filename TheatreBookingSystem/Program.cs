@@ -1,8 +1,3 @@
-using MediatR;
-using TheatreBookingSystem.Events;
-using TheatreBookingSystem.Infrastructure;
-using TheatreBookingSystem.Services;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -10,16 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
-builder.Services.AddTransient<INotificationHandler<SeatBookedDomainEvent>, SeatBookedDomainEventHandler>();
 
-builder.Services.AddScoped<IEventStore>(sp =>
-{
-	var config = sp.GetRequiredService<IConfiguration>();
-	var connectionString = config["AzureBlobStorage:ConnectionString"];
-	var containerName = config["AzureBlobStorage:ContainerName"];
-
-	return new AzureBlobEventStore(connectionString, containerName);
-});
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
