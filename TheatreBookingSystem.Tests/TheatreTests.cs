@@ -71,7 +71,7 @@ public class TheatreTests
 	public void RemoveSeat_Should_Throw_Exception_When_Seat_Does_Not_Exist()
 	{
 		// Arrange
-		var theatre = new Theatre(new List<Seat>());
+		var theatre = new Theatre();
 
 		// Act & Assert
 		var exception = Assert.Throws<InvalidOperationException>(() => theatre.RemoveSeat(Guid.NewGuid()));

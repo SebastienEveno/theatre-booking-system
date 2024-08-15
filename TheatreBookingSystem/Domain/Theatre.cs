@@ -8,9 +8,9 @@ public class Theatre : Entity
 
 	public IReadOnlyCollection<Seat> Seats => _seats.AsReadOnly();
 
-	public Theatre(List<Seat> seats)
+	public Theatre()
 	{
-		_seats = seats;
+		_seats = new List<Seat>();
 	}
 
 	public Theatre(Guid id, List<Seat> seats) : base(id)
