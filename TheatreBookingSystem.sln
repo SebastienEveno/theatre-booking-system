@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35122.118
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheatreBookingSystem", "TheatreBookingSystem\TheatreBookingSystem.csproj", "{A1B48041-F8CF-4367-BF69-35BEB672201F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheatreBookingSystem.Tests", "TheatreBookingSystem.Tests\TheatreBookingSystem.Tests.csproj", "{CC724A61-6F60-4F7A-832A-0BAD161DE30E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A1B48041-F8CF-4367-BF69-35BEB672201F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1B48041-F8CF-4367-BF69-35BEB672201F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1B48041-F8CF-4367-BF69-35BEB672201F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1B48041-F8CF-4367-BF69-35BEB672201F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC724A61-6F60-4F7A-832A-0BAD161DE30E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC724A61-6F60-4F7A-832A-0BAD161DE30E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC724A61-6F60-4F7A-832A-0BAD161DE30E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC724A61-6F60-4F7A-832A-0BAD161DE30E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5FB5D12E-E7DC-48B3-9539-FA0E6A25427D}
+	EndGlobalSection
+EndGlobal
