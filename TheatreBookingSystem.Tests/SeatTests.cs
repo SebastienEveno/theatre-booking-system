@@ -44,4 +44,31 @@ public class SeatTests
 		var exception = Assert.Throws<InvalidOperationException>(() => seat.Book());
 		Assert.That(exception.Message, Is.EqualTo("Seat already booked"));
 	}
+
+	[Test]
+	public void Cancel_ShouldSucceed_WhenSeatIsBooked()
+	{
+		// Arrange
+		var seatId = Guid.NewGuid();
+		var seat = new Seat(seatId);
+		seat.Book(); // Book the seat initially
+
+		// Act
+		seat.Cancel();
+
+		// Assert
+		Assert.That(seat.IsBooked, Is.False, "Seat should be unbooked");
+	}
+
+	[Test]
+	public void Cancel_ShouldThrowException_WhenSeatIsNotBooked()
+	{
+		// Arrange
+		var seatId = Guid.NewGuid();
+		var seat = new Seat(seatId); // Seat is not booked
+
+		// Act & Assert
+		var ex = Assert.Throws<InvalidOperationException>(() => seat.Cancel());
+		Assert.That(ex.Message, Is.EqualTo("Seat is not booked"));
+	}
 }
