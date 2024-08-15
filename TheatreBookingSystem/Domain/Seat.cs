@@ -20,4 +20,14 @@ public class Seat
 
 		IsBooked = true;
 	}
+
+	public void Cancel()
+	{
+		if (!IsBooked)
+		{
+			throw new InvalidOperationException("Seat is not booked");
+		}
+
+		IsBooked = false;
+	}
 }

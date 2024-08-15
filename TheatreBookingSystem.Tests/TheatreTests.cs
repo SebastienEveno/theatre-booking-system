@@ -126,6 +126,66 @@ public class TheatreTests
 	}
 
 	[Test]
+	public void CancelBooking_ShouldSucceed_WhenSeatIsBooked()
+	{
+		// Arrange
+		var seat = new Seat(_seatId);
+		seat.Book(); // Book the seat initially
+		var seats = new List<Seat> { seat };
+		var theatre = new Theatre(_theatreId, seats);
+
+		// Act
+		theatre.CancelBooking(_seatId);
+
+		// Assert
+		Assert.That(seat.IsBooked, Is.False, "Seat should be unbooked");
+	}
+
+	public void CancelBooking_ShouldRaiseBookingCanceledEvent_WhenSeatIsBooked()
+	{
+		// Arrange
+		var seat = new Seat(_seatId);
+		seat.Book(); // Book the seat initially
+		var seats = new List<Seat> { seat };
+		var theatre = new Theatre(_theatreId, seats);
+
+		// Act
+		theatre.CancelBooking(_seatId);
+
+		// Assert
+		Assert.That(theatre.DomainEvents.Count, Is.EqualTo(1));
+		var domainEvent = theatre.DomainEvents.First() as BookingCanceledDomainEvent;
+		Assert.That(domainEvent, Is.Not.Null);
+		Assert.That(domainEvent.TheatreId, Is.EqualTo(_theatreId));
+		Assert.That(domainEvent.SeatId, Is.EqualTo(_seatId));
+	}
+
+	[Test]
+	public void CancelBooking_ShouldThrowException_WhenSeatIsNotBooked()
+	{
+		// Arrange
+		var seat = new Seat(_seatId); // Seat is not booked
+		var seats = new List<Seat> { seat };
+		var theatre = new Theatre(_theatreId, seats);
+
+		// Act & Assert
+		var ex = Assert.Throws<InvalidOperationException>(() => theatre.CancelBooking(_seatId));
+		Assert.That(ex.Message, Is.EqualTo("Seat is not booked"));
+	}
+
+	[Test]
+	public void CancelBooking_ShouldThrowException_WhenSeatDoesNotExist()
+	{
+		// Arrange
+		var seatId = Guid.NewGuid(); // Seat ID does not exist
+		var theatre = new Theatre();
+
+		// Act & Assert
+		var ex = Assert.Throws<InvalidOperationException>(() => theatre.CancelBooking(seatId));
+		Assert.That(ex.Message, Is.EqualTo("Seat not found"));
+	}
+
+	[Test]
 	public void Apply_ShouldUpdateSeatState_WhenEventIsApplied()
 	{
 		// Arrange

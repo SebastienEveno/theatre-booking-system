@@ -58,7 +58,20 @@ public class Theatre : Entity
 		AddDomainEvent(new SeatBookedDomainEvent(Id, seat.Id));
 	}
 
-	// Method for loading state without raising events
+	public void CancelBooking(Guid seatId)
+	{
+		var seat = _seats.FirstOrDefault(s => s.Id == seatId);
+
+		if (seat == null)
+		{
+			throw new InvalidOperationException("Seat not found");
+		}
+
+		seat.Cancel();
+
+		AddDomainEvent(new BookingCanceledDomainEvent(Id, seatId));
+	}
+
 	public override void Apply(IDomainEvent @event)
 	{
 		if (@event is SeatBookedDomainEvent seatBookedDomainEvent)
